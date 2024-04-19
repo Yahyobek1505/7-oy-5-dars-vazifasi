@@ -1,9 +1,17 @@
+import { useDispatch, useSelector } from "react-redux";
 import user from "../../assets/user.svg";
 import mail from "../../assets/sms.svg";
 import lok from "../../assets/lock.svg";
 import google from "../../assets/google.svg";
 import "./App.css";
+import { useNavigate } from "react-router-dom";
 const Form = () => {
+  // const counter = useSelector((state) => state.counter.value);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  function handleLogin() {
+    navigate ("/login")
+  }
   return (
     <div>
       <form className="">
@@ -53,17 +61,21 @@ const Form = () => {
             className="absolute text-xl top-11 left-2"
           />
         </div>
-        <div className="button5 span w-full bg-[#f8448c] rounded-md cursor-pointer border shadow-md h-[50px] py-[12.5px] mt-7 mb-5">
+        <div onClick={handleLogin} className="button5 span w-full bg-[#f8448c] rounded-md cursor-pointer border shadow-md h-[50px] py-[12.5px] mt-7 mb-5">
           <p className="text-center text-white ">Sign Up</p>
         </div>
         <div className="with-google flex w-full border h-[50px] rounded-md items-center justify-center gap-4 cursor-pointer">
-          <img src={google} alt="google" width={30} height={30}/>
+          <img src={google} alt="google" width={30} height={30} />
           <span className="text-base ">Sign Up with Google</span>
         </div>
         <p className="text-center my-4 cursor-pointer">or login with SSO</p>
       </form>
       <hr />
-      <p className="text-[11px]">By lobby the button above, you agree to our <span className="text-[13px] cursor-pointer">Terms of Service</span> and <span className="text-[13px] cursor-pointer">Privacy Policy</span>.</p>
+      <p className="text-[11px]">
+        By lobby the button above, you agree to our{" "}
+        <span className="text-[13px] cursor-pointer">Terms of Service</span> and{" "}
+        <span className="text-[13px] cursor-pointer">Privacy Policy</span>.
+      </p>
     </div>
   );
 };

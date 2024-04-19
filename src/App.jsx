@@ -1,12 +1,9 @@
-// import { useDispatch, useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 
 function App() {
-// const counter =useSelector((state) => state.counter.value)
-// const dispatch =useDispatch()
 
   return (
     <>
