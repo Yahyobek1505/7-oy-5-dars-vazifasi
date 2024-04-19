@@ -1,16 +1,29 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import user from "../../assets/user.svg";
 import mail from "../../assets/sms.svg";
 import lok from "../../assets/lock.svg";
 import google from "../../assets/google.svg";
 import "./App.css";
+import {add, remove, edit} from "../../redux/userSlice"
 import { useNavigate } from "react-router-dom";
+import { useRef } from "react";
 const Form = () => {
-  // const counter = useSelector((state) => state.counter.value);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  function handleLogin() {
-    navigate ("/login")
+  const name = useRef(null);
+  const email = useRef(null);
+  const password = useRef(null);
+  function handleLogin(e) {
+    e.preventDefault()
+    if (name.current.value) {
+      const user = {
+        name: name.current.value,
+        email: email.current.value,
+        password: password.current.value
+      };
+      dispatch (add(user))
+      navigate("/login");
+    }
   }
   return (
     <div>
@@ -20,6 +33,7 @@ const Form = () => {
             Full Name
           </label>
           <input
+            ref={name}
             type="text"
             placeholder="John Doe"
             className="w-full h-[45px] border outline-none text-base rounded-md indent-10"
@@ -35,6 +49,7 @@ const Form = () => {
             Email
           </label>
           <input
+            ref={email}
             type="email"
             placeholder="example@site.com"
             className="w-full h-[45px] border outline-none text-base rounded-md indent-10"
@@ -50,6 +65,7 @@ const Form = () => {
             Choose Password
           </label>
           <input
+            ref={password}
             type="password"
             placeholder="Minimum 8 characters"
             className="w-full h-[45px] border outline-none text-base rounded-md indent-10"
@@ -61,7 +77,9 @@ const Form = () => {
             className="absolute text-xl top-11 left-2"
           />
         </div>
-        <div onClick={handleLogin} className="button5 span w-full bg-[#f8448c] rounded-md cursor-pointer border shadow-md h-[50px] py-[12.5px] mt-7 mb-5">
+        <div
+          onClick={handleLogin}
+          className="button5 span w-full bg-[#f8448c] rounded-md cursor-pointer border shadow-md h-[50px] py-[12.5px] mt-7 mb-5">
           <p className="text-center text-white ">Sign Up</p>
         </div>
         <div className="with-google flex w-full border h-[50px] rounded-md items-center justify-center gap-4 cursor-pointer">

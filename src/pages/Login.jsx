@@ -4,12 +4,26 @@ import mail from "../assets/sms.svg";
 import lok from "../assets/lock.svg";
 import google from "../assets/google.svg";
 import { useNavigate } from "react-router-dom";
-// import { NavLink } from "react-router-dom";
+import {add, remove, edit} from "../redux/userSlice";
+import { useDispatch } from "react-redux";
 const Login = () => {
-const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+const name = useRef(null);
+const email = useRef(null);
+const password = useRef(null);
 
-function handleLogin() {
-  navigate("/home")
+function handleLogin(e) {
+  e.preventDefault()
+  if (name.current.value) {
+    const user = {
+      name: name.current.value,
+      email: email.current.value,
+      password: password.current.value
+    };
+    dispatch (add(user))
+    navigate("/login");
+  }
 }
   return (
     <div className="w-[500px] bg-white rounded-lg mx-auto h-[500px] mt-4 py-6 px-[40px]">
@@ -62,4 +76,4 @@ function handleLogin() {
   );
 };
 
-export default Login;
+export default Login
