@@ -4,7 +4,7 @@ import mail from "../../assets/sms.svg";
 import lok from "../../assets/lock.svg";
 import google from "../../assets/google.svg";
 import "./App.css";
-import {add, remove, edit} from "../../redux/userSlice"
+import {register} from "../../redux/userSlice"
 import { useNavigate } from "react-router-dom";
 import { useRef } from "react";
 const Form = () => {
@@ -21,8 +21,12 @@ const Form = () => {
         email: email.current.value,
         password: password.current.value
       };
-      dispatch (add(user))
+      dispatch (register(user))
       navigate("/login");
+      name.current.value = "",
+      email.current.value = "",
+      password.current.value = ""
+
     }
   }
   return (

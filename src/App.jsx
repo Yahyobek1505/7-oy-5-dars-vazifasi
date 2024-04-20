@@ -1,20 +1,46 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import Error from "./pages/Error";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
 function App() {
+  const token = useSelector((state) => state.token.value);
+  const location = useLocation();
+  const navigate = useNavigate();
+  console.log(location);
+  useEffect(() => {
+    if (!token && location.pathname != "/register") {
+      navigate("/login");
+    }
+  }, [navigate, token]);
 
+  function ProtectedRoute({ children, isAuth, redirecTo = "/login" }) {
+    if (!isAuth) {
+      navigate(redirecTo);
+    }
+    return children;
+  }
   return (
     <>
-    <Routes>
-      <Route path="/" element= {<Register></Register>}></Route>
-      <Route path="/Login" element= {<Login></Login>}></Route>
-      <Route path="/home" element= {<Home></Home>}></Route>
-    </Routes>
+      <Routes>
+        {/* public */}
+        <Route path="/Login" element={<Login></Login>}></Route>
+        <Route path="/register" element={<Register></Register>}></Route>
+        <Route path="*" element={<Error></Error>}></Route>
+        {/* protected */}
+        <Route
+          path="/"
+          element={
+            <ProtectedRoute isAuth={token ? true : false}>
+              <Home></Home>
+            </ProtectedRoute>
+          }></Route>
+      </Routes>
     </>
-  )
- 
+  );
 }
 
 export default App;
