@@ -33,14 +33,14 @@ const Form = () => {
     <div>
       <form className="">
         <div className="name mb-4 relative">
-          <label htmlFor="name" className="block mb-2 text-base">
+          <label htmlFor="name" className="block mb-2 text-base dark:text-[#D8D8D8]">
             Full Name
           </label>
           <input
             ref={name}
             type="text"
             placeholder="John Doe"
-            className="w-full h-[45px] border outline-none text-base rounded-md indent-10"
+            className="w-full h-[45px] border outline-none text-base rounded-md indent-10 dark:bg-transparent dark:text-[#797979]"
           />
           <img
             src={user}
@@ -49,14 +49,14 @@ const Form = () => {
           />
         </div>
         <div className="email mb-4 relative">
-          <label htmlFor="name" className="block mb-2 text-base">
+          <label htmlFor="name" className="block mb-2 text-base dark:text-[#D8D8D8]">
             Email
           </label>
           <input
             ref={email}
             type="email"
             placeholder="example@site.com"
-            className="w-full h-[45px] border outline-none text-base rounded-md indent-10"
+            className="w-full h-[45px] border outline-none text-base rounded-md indent-10 dark:bg-transparent dark:text-[#797979]"
           />
           <img
             src={mail}
@@ -65,17 +65,16 @@ const Form = () => {
           />
         </div>
         <div className="password mb-4 relative">
-          <label htmlFor="name" className="block mb-2 text-base">
+          <label htmlFor="name" className="block mb-2 text-base dark:text-[#D8D8D8]">
             Choose Password
           </label>
           <input
             ref={password}
             type="password"
             placeholder="Minimum 8 characters"
-            className="w-full h-[45px] border outline-none text-base rounded-md indent-10"
+            className="w-full h-[45px] border outline-none text-base rounded-md indent-10 dark:bg-transparent dark:text-[#797979]"
           />
-          <span  className="absolute top-11 left-[360px]">Show</span>
-          {/* ${theme == "light" ? "opacity-0" : "opacity-100" */}
+          <span  className="absolute top-11 left-[360px] dark:text-[#D8D8D8]">Show</span>
           <img
             src={lok}
             alt="user"
@@ -89,12 +88,12 @@ const Form = () => {
         </div>
         <div className="with-google flex w-full border h-[50px] rounded-md items-center justify-center gap-4 cursor-pointer">
           <img src={google} alt="google" width={30} height={30} />
-          <span className="text-base ">Sign Up with Google</span>
+          <span className="text-base text-[#797979] dark:text-[#D8D8D8]">Sign Up with Google</span>
         </div>
-        <p className="text-center my-4 cursor-pointer">or login with SSO</p>
+        <p className="text-center my-4 cursor-pointer text-[#000] dark:text-[#D8D8D8]">or login with SSO</p>
       </form>
       <hr />
-      <p className="text-[11px]">
+      <p className="text-[11px] text-black dark:text-[#7E7E7E]">
         By lobby the button above, you agree to our{" "}
         <span className="text-[13px] cursor-pointer">Terms of Service</span> and{" "}
         <span className="text-[13px] cursor-pointer">Privacy Policy</span>.
