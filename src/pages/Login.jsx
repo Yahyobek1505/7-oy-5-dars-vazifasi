@@ -9,6 +9,7 @@ import { removeToken } from "../redux/tokenSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useRef, useState } from "react";
 import Mode from "../components/Mode";
+
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -25,6 +26,8 @@ const Login = () => {
     if (user) {
       dispatch(addToken(user.email))
       navigate('/')
+    }else{
+      alert("Parol yoki email noto'g'ri kiritildi")
     }
 
   }
@@ -68,7 +71,7 @@ const Login = () => {
               placeholder="Enter password"
               className="w-full h-[45px] border outline-none text-base rounded-md indent-10 dark:bg-transparent dark:text-[#797979]"
             />
-            <p className="text-end mt-1">Frogot Password?</p>
+            <p className="text-end mt-1 cursor-pointer">Frogot Password?</p>
             <MdOutlineRemoveRedEye
               onClick={handleHide}
               className={`absolute top-11 left-[380px] text-[20px] text-gray-500 cursor-pointer z-10`}

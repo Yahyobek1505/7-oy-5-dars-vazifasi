@@ -6,8 +6,9 @@ import google from "../../assets/google.svg";
 import "./App.css";
 import {register} from "../../redux/userSlice"
 import { useNavigate } from "react-router-dom";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 const Form = () => {
+  const [show, setShow] =useState(false)
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const name = useRef(null);
@@ -28,6 +29,10 @@ const Form = () => {
       password.current.value = ""
 
     }
+  }
+
+  function handelShow() {
+    setShow(!show)
   }
   return (
     <div>
@@ -70,11 +75,11 @@ const Form = () => {
           </label>
           <input
             ref={password}
-            type="password"
+            type={show ? 'text' : 'password'}
             placeholder="Minimum 8 characters"
             className="w-full h-[45px] border outline-none text-base rounded-md indent-10 dark:bg-transparent dark:text-[#797979]"
           />
-          <span  className="absolute top-11 left-[360px] dark:text-[#D8D8D8]">Show</span>
+          <span  className={`absolute top-11 left-[360px] dark:text-[#D8D8D8] cursor-pointer`}>{show ? 'Hide' : 'Show' }</span>
           <img
             src={lok}
             alt="user"

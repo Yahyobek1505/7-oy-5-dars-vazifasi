@@ -16,7 +16,7 @@ const Mode = () => {
   return (
     <div className="mode relative ml-[400px] ">
     <IoMdMoon onClick={() => setTheme(theme == "light" ?  "dark" : "light" )} className= {`absolute cursor-pointer text-xl ${theme == "dark" ? "opacity-0" : "opacity-100"}`}/>
-    <LuSun onClick={() => setTheme(theme == "light" ?  "dark" : "light" )} className={`absolute cursor-pointer text-xl ${theme == "light" ? "opacity-0" : "opacity-100"}`}/>
+    <LuSun onClick={() => setTheme(theme == "light" ?  "dark" : "light" )} className={`absolute cursor-pointer text-black dark:text-white text-xl ${theme == "light" ? "opacity-0" : "opacity-100"}`}/>
     </div>
   )
 }
