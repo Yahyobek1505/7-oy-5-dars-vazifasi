@@ -74,7 +74,8 @@ const Form = () => {
             placeholder="Minimum 8 characters"
             className="w-full h-[45px] border outline-none text-base rounded-md indent-10"
           />
-          <span className="absolute top-11 left-[360px]">Show</span>
+          <span  className="absolute top-11 left-[360px]">Show</span>
+          {/* ${theme == "light" ? "opacity-0" : "opacity-100" */}
           <img
             src={lok}
             alt="user"

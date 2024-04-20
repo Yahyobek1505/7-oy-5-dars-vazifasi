@@ -10,5 +10,14 @@ export default {
       'body': ['Inter', 'san-serif'],
     }
   },
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors:{
+        darkly: "#181818",
+        darklyBlue: "#000000"
+      }
+    },
+  },
   plugins: [],
 }

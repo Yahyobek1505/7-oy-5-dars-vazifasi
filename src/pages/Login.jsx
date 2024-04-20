@@ -1,26 +1,23 @@
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { FaRegEyeSlash } from "react-icons/fa";
-import { IoMdMoon } from "react-icons/io";
-import { LuSun } from "react-icons/lu";
 import mail from "../assets/sms.svg";
 import lok from "../assets/lock.svg";
 import google from "../assets/google.svg";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { register } from "../redux/userSlice";
 import { useDispatch } from "react-redux";
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import Mode from "../components/Mode";
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const name = useRef(null);
   const email = useRef(null);
   const password = useRef(null);
-
+const [hide, setHide] = useState(true)
   function handleLogin(e) {
     e.preventDefault();
     if (name.current.value) {
       const user = {
-        name: name.current.value,
         email: email.current.value,
         password: password.current.value,
       };
@@ -28,12 +25,17 @@ const Login = () => {
       navigate("/login");
     }
   }
+  function hideShow() {
+    setHide(true)
+  }
+   
+  function handleHide() {
+    setHide(false)
+  }
+   
   return (
-    <div className="w-[500px] bg-white rounded-lg mx-auto h-[500px] mt-4 py-6 px-[40px]">
-      <div className="mode relative ml-[400px] ">
-      <IoMdMoon className="absolute cursor-pointer text-xl"/>
-      <LuSun  className="absolute opacity-0 cursor-pointer text-xl"/>
-      </div>
+    <div className="w-[500px] bg-white dark:bg-[#181818] dark:text-white rounded-lg mx-auto h-[500px] mt-4 py-6 px-[40px]">
+  <Mode></Mode>
       <h1 className="text-center font-bold text-2xl mb-8">Welcome back!</h1>
       <div>
         <form className="">
@@ -63,8 +65,8 @@ const Login = () => {
               placeholder="Enter password"
               className="w-full h-[45px] border outline-none text-base rounded-md indent-10"
             />
-            <MdOutlineRemoveRedEye className="absolute top-11 left-[380px] text-[20px] text-gray-500 cursor-pointer" />
-            <FaRegEyeSlash className="absolute top-11 left-[380px] text-[20px] text-gray-500  cursor-pointer" />
+            <MdOutlineRemoveRedEye onClick={handleHide} className={`absolute top-11 left-[380px] text-[20px] text-gray-500 cursor-pointer z-10`} />
+            <FaRegEyeSlash onClick={hideShow} className={`absolute top-11 left-[380px] text-[20px] text-gray-500  cursor-pointer ${hide  ? "opacity-0" : "opacity-100"}`} />
             <img
               src={lok}
               alt="user"
@@ -81,6 +83,7 @@ const Login = () => {
             <span className="text-base ">Sign Up with Google</span>
           </div>
           <p className="text-center my-4 cursor-pointer">or login with SSO</p>
+          <span className="flex justify-end gap-2">Don't have account <NavLink to='/register' className='text-blue-800 underline'>Go registr</NavLink></span>
         </form>
       </div>
     </div>

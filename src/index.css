@@ -5,6 +5,9 @@
 html, body{
   background: #c5c5c5;
 }
+.dark{
+  background: #000;
+}
 .button5{
   background: linear-gradient(90deg, #f7b8b3,#f8448c,#d81368);
 }

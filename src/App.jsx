@@ -10,7 +10,6 @@ function App() {
   const token = useSelector((state) => state.token.value);
   const location = useLocation();
   const navigate = useNavigate();
-  console.log(location);
   useEffect(() => {
     if (!token && location.pathname != "/register") {
       navigate("/login");
@@ -24,7 +23,7 @@ function App() {
     return children;
   }
   return (
-    <>
+    <div className="dark:bg-black">
       <Routes>
         {/* public */}
         <Route path="/Login" element={<Login></Login>}></Route>
@@ -39,7 +38,7 @@ function App() {
             </ProtectedRoute>
           }></Route>
       </Routes>
-    </>
+    </div>
   );
 }
 
