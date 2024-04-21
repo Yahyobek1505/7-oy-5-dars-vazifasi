@@ -13,7 +13,8 @@ import Mode from "../components/Mode";
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [hide, setHide] = useState(true);
+  const [type, setType] =useState('password');
+  const [show, setShow] =useState("Hide");
   const email = useRef(null);
   const password = useRef(null);
   const users = useSelector(state => state.user.value)
@@ -32,13 +33,14 @@ const Login = () => {
 
   }
   function hideShow() {
-    setHide(true);
+    if (type === 'password') {
+      setShow('Show')
+      setType('text')
+    }else{
+      setShow('Hide');
+      setType('password');
+    }
   }
-
-  function handleHide() {
-    setHide(false);
-  }
-
   return (
     <div className="w-[500px] bg-white dark:bg-[#181818] dark:text-white rounded-lg mx-auto h-[520px] mt-4 py-6 px-[40px]">
       <Mode></Mode>
@@ -67,21 +69,23 @@ const Login = () => {
             </label>
             <input
               ref={password}
-              type="password"
+              type={type}
               placeholder="Enter password"
               className="w-full h-[45px] border outline-none text-base rounded-md indent-10 dark:bg-transparent dark:text-[#797979]"
             />
             <p className="text-end mt-1 cursor-pointer">Frogot Password?</p>
-            <MdOutlineRemoveRedEye
-              onClick={handleHide}
-              className={`absolute top-11 left-[380px] text-[20px] text-gray-500 cursor-pointer z-10`}
-            />
-            <FaRegEyeSlash
+            {
+             type == 'password' ? 
+              <MdOutlineRemoveRedEye
               onClick={hideShow}
-              className={`absolute top-11 left-[380px] text-[20px] text-gray-500  cursor-pointer ${
-                hide ? "opacity-0" : "opacity-100"
-              }`}
+              className="absolute top-11 left-[380px] text-[20px] text-gray-500 cursor-pointer z-10"
             />
+            : 
+            <FaRegEyeSlash
+            onClick={hideShow}
+            className="absolute top-11 left-[380px] text-[20px] text-gray-500  cursor-pointer" 
+          /> 
+            }
             <img
               src={lok}
               alt="user"

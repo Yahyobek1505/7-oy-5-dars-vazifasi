@@ -8,7 +8,8 @@ import {register} from "../../redux/userSlice"
 import { useNavigate } from "react-router-dom";
 import { useRef, useState } from "react";
 const Form = () => {
-  const [show, setShow] =useState(false)
+  const [type, setType] =useState('password');
+  const [show, setShow] =useState("Hide");
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const name = useRef(null);
@@ -32,7 +33,13 @@ const Form = () => {
   }
 
   function handelShow() {
-    setShow(!show)
+    if (type === 'password') {
+      setShow('Show')
+      setType('text')
+    }else{
+      setShow('Hide');
+      setType('password');
+    }
   }
   return (
     <div>
@@ -75,11 +82,12 @@ const Form = () => {
           </label>
           <input
             ref={password}
-            type={show ? 'text' : 'password'}
+            type={type}
             placeholder="Minimum 8 characters"
             className="w-full h-[45px] border outline-none text-base rounded-md indent-10 dark:bg-transparent dark:text-[#797979]"
           />
-          <span  className={`absolute top-11 left-[360px] dark:text-[#D8D8D8] cursor-pointer`}>{show ? 'Hide' : 'Show' }</span>
+          <span onClick={handelShow} className="absolute top-11 left-[360px] dark:text-[#D8D8D8] cursor-pointer">{
+          type == 'password' ? "Show" : "Hide"}</span>
           <img
             src={lok}
             alt="user"
