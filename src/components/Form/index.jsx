@@ -15,9 +15,36 @@ const Form = () => {
   const name = useRef(null);
   const email = useRef(null);
   const password = useRef(null);
+  const validateEmail = (email) => {
+    return String(email)
+      .toLowerCase()
+      .match(
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      );
+  };
+  function validate() {
+    if (name.current.value.trim() < 3) {
+      alert("Name is not valid!")
+      return false
+    }
+    if (email.current.value.trim() < 3) {
+      alert("Email is not valid!")
+      return false
+    }
+    if (validateEmail(email.current.value)) {
+      alert("Email is not valid!")
+      return false
+    }
+    if (password.current.value.trim() < 3) {
+      alert("Password is not valid!")
+      return false
+    }
+    return true
+  }
   function handleLogin(e) {
     e.preventDefault()
-    if (name.current.value) {
+    const isValid = validate()
+    if (isValid) {
       const user = {
         name: name.current.value,
         email: email.current.value,
